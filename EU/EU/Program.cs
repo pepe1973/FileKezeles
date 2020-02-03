@@ -71,20 +71,42 @@ namespace EU
 
             Console.WriteLine($"7. Feladat: Legutoljára csatlakozott ország: {utolsoBelepo}.");
 
-            /*List<int[][]> evenkentiBelopokSzama = new List<int[][]>();
+            List<int[]> evenkentiBelopokSzama = new List<int[]>();
 
             for (int i = 0; i < tagallamok.Count; i++)
             {
-                for (int j = 0; j < evenkentiBelopokSzama.Length; j++)
+				int ev = Int32.Parse(tagallamok[i][1].Substring(0, 4));
+				bool vanE = true;
+
+				for (int j = 0; j < evenkentiBelopokSzama.Count; j++)
                 {
-                    if (tagallamok[i][1].Substring(0, 4) == evenkentiBelopokSzama[][])
+                    if (ev == evenkentiBelopokSzama[j][0])
                     {
-
-                    }
+						++evenkentiBelopokSzama[j][1];
+						vanE = false;
+					}
                 }
-            }*/
 
-            Dictionary<int, int> evenkentiBelepokSzama = new Dictionary<int, int>();
+				if (vanE)
+				{
+					int[] uj = new int[] { ev, 1};
+					evenkentiBelopokSzama.Add(uj);
+				}
+            }
+
+			using (StreamWriter sw = new StreamWriter("kiiras.txt", false, Encoding.UTF8))
+			{
+				Console.WriteLine("8. feladat: Statisztika: ");
+				sw.WriteLine("8. feladat: Statisztika: ");
+
+				for (int i = 0; i < evenkentiBelopokSzama.Count; i++)
+				{
+					Console.WriteLine($"\t{evenkentiBelopokSzama[i][0]} - {evenkentiBelopokSzama[i][1]} ország");
+					sw.WriteLine($"\t{evenkentiBelopokSzama[i][0]} - {evenkentiBelopokSzama[i][1]} ország");
+				}
+			}
+
+            /*Dictionary<int, int> evenkentiBelepokSzama = new Dictionary<int, int>();
 
             for (int i = 0; i < tagallamok.Count; i++)
             {
@@ -113,7 +135,7 @@ namespace EU
                     Console.WriteLine($"\t{item.Key} - {item.Value} ország");
                     sw.WriteLine($"\t{item.Key} - {item.Value} ország");
                 }
-            }
+            }*/
            
             Console.ReadKey(true);
         }
